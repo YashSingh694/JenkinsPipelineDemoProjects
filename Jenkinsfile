@@ -21,7 +21,7 @@ sh "mvn test"
 stage('Compile') 
 {
 steps{
-echo "Compiling the Project.........."#
+echo "Compiling the Project.........."
 //bat "mvn compile"
 sh "mvn compile"
 }
