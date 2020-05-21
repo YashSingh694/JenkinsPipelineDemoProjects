@@ -1,0 +1,52 @@
+pipeline{
+			agent any
+			stages 
+			{
+					stage('Build') 
+					{
+					steps{
+					echo "Building the Code.........."
+					//bat "mvn clean"
+					sh "mvn clean"
+					}
+					}
+					stage('Test') 
+					{
+					steps{
+					echo "Testing the Code.........."
+					//bat "mvn test"
+					sh "mvn test"
+					}
+					}
+					stage('Compile') 
+					{
+					steps{
+					echo "Compiling the Project.........."
+					//bat "mvn compile"
+					sh "mvn compile"
+					}
+					}
+					stage('Deploy') 
+					{
+					steps{
+					echo "Deploying the Project.........."
+					}
+}
+}
+post {
+
+    success {
+
+      mail to: "jenkins.prac16@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Yay, we passed."
+
+    }
+
+    failure {
+
+      mail to: "jenkins.prac16@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
+
+    }
+
+  }
+
+}
